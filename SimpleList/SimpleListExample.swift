@@ -34,13 +34,13 @@ class ExampleListCell: CompatibleCell {
         let button = DeleteButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.setTitle("Remove", for: .normal)
         return button
     }()
 
     func setData(_ data: ExampleData, _ indexPath: IndexPath) {
         valueLabel.text = data.color.toString()
         
-        button.setTitle("Remove", for: .normal)
         button.setTitleColor(data.color, for: .normal)
         button.tag = data.id.hashValue
         
@@ -108,8 +108,8 @@ class ExampleListController: SimpleListController<ExampleListCell> {
     override func setup() {
         super.setup()
         
-        configureDataSource { (cell, indexPath) in
-            cell.button.addTarget(self, action: #selector(self.removeCellTapped(_:)), for: .touchUpInside)
+        configureDataSource { [weak self] (cell, indexPath) in
+            cell.button.addTarget(self, action: #selector(self?.removeCellTapped(_:)), for: .touchUpInside)
         }
         
         configureSubscription()
