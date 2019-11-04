@@ -116,6 +116,7 @@ class SimpleListView<Cell: CompatibleCell>: ControllerView {
     }
 }
 
+/* Simple List Controller */
 class SimpleListController<Cell: CompatibleCell>: Controller<SimpleListView<Cell>>, UICollectionViewDelegate {
     
     public enum Section: CaseIterable {
@@ -154,4 +155,6 @@ class SimpleListController<Cell: CompatibleCell>: Controller<SimpleListView<Cell
         snapshot.appendItems(data)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 }

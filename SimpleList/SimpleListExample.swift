@@ -40,10 +40,8 @@ class ExampleListCell: CompatibleCell {
 
     func setData(_ data: ExampleData, _ indexPath: IndexPath) {
         valueLabel.text = data.color.toString()
-        
         button.setTitleColor(data.color, for: .normal)
         button.tag = data.id.hashValue
-        
         backgroundColor = data.color
     }
     
@@ -125,5 +123,9 @@ class ExampleListController: SimpleListController<ExampleListCell> {
     
     @objc func removeCellTapped(_ sender: UIButton) {
         viewModel.removeItem(withIdentifier: sender.tag)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Did select item at: \(indexPath.row)")
     }
 }
